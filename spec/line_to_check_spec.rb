@@ -26,5 +26,17 @@ describe LineToCheck do
       expect(test_line2.trailing_space?).to be_falsy
     end
   end
-  
+
+  describe '#check_line' do
+    it ('adds trailing-space warning message in results array if the line has a trailing space') do
+      test_line.check_line
+      expect(LineToCheck.results).to eql(["./test_files/test1.json line# 2 Trailing space detected"])
+    end
+
+    it ('doesn\'t add trailing-space warning message in results array if the line has no trailing space') do
+      test_line2.check_line
+      expect(LineToCheck.results).to eql(["./test_files/test1.json line# 2 Trailing space detected"])
+    end
+  end
+
 end
