@@ -12,7 +12,7 @@ class LineToCheck
   end
 
   def check_line
-    @@results_array << "#{@path} #{yellow("line# #{@line_number}:")} Trailing space detected" if trailing_space?
+    @@results_array << "#{@path} #{yellow("line# #{@line_number}:")} Trailing space detected!" if trailing_space?
   end
 
   def trailing_space?
