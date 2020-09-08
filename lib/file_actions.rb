@@ -14,7 +14,7 @@ module FileActions
   end
 
   def read_lines(file)
-    file.readlines
+    file.readlines(chomp: true)
   end
 
   def count_lines(file)
