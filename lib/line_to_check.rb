@@ -1,6 +1,10 @@
+require_relative './assign_color'
+
 class LineToCheck
+  include Color
   attr_reader :value
   @@results_array = []
+  
   def initialize(path, line_number, value)
     @path= path
     @line_number = line_number
@@ -8,7 +12,7 @@ class LineToCheck
   end
 
   def check_line
-    @@results_array << "#{@path} line# #{@line_number} Trailing space detected" if trailing_space?
+    @@results_array << "#{@path} #{yellow("line# #{@line_number}:")} Trailing space detected" if trailing_space?
   end
 
   def trailing_space?
