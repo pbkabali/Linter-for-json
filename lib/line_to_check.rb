@@ -19,7 +19,6 @@ class LineToCheck
         @@results_array << "#{@path} #{yellow("line# #{@line_number}:")} Missing space after colon at #{yellow(pos[0])}!" unless pos[2]
       end 
     end
-
   end
 
   def trailing_space?
@@ -45,7 +44,7 @@ class LineToCheck
       end
       findings
     end
-  end 
+  end
 
   def self.results
     @@results_array

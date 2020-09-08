@@ -7,6 +7,7 @@ paths = FileActions.get_file_paths
 
 paths.each do |path| 
   file = FileToCheck.new path
+  file.check_file
   lines_array = file.read_lines(file.open_file(path))
   lines_array.each_with_index do |line, index|
     current_line = LineToCheck.new(path, index + 1, line)
@@ -14,12 +15,14 @@ paths.each do |path|
   end
 end
 
+linter_results = FileToCheck.results + LineToCheck.results
+
 puts Color.cyan("******************** Begin JSON Linters Report ******************")
-if LineToCheck.results.empty?
+if linter_results.empty?
   puts Color.green("All looks good. No issues found")
 else
-  no_of_issues = LineToCheck.results.length
-  puts LineToCheck.results
+  no_of_issues = linter_results.length
+  puts linter_results
   puts Color.red("#{no_of_issues} issue#{no_of_issues > 1 ? "s" : ""} found!")
 end
 puts Color.cyan("********************* End JSON Linters Report *******************")
