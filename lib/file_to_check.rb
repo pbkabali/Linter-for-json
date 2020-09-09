@@ -17,9 +17,9 @@ class FileToCheck
   end
 
   def check_file
-    return if braces_closed?.empty?
+    return if braces_closed.empty?
 
-    braces_closed?.each do |pos|
+    braces_closed.each do |pos|
       @@results_array << "#{@path} #{yellow("line# #{pos[0]}:")} Expected a #{yellow(pos[2])}!" if pos[1]
     end
   end
@@ -30,7 +30,7 @@ class FileToCheck
 
   private
 
-  def braces_closed?
+  def braces_closed
     findings = []
     lines_array = read_lines(open_file(@path))
     lines_array.each_with_index do |val, index|
@@ -55,7 +55,7 @@ class FileToCheck
     number_of_lines = count_lines(open_file(@path))
     findings << [number_of_lines, true, "'{'"] if @curly_braces.negative?
     findings << [number_of_lines, true, "'}'"] if @curly_braces.positive?
-    # findings << [number_of_lines, true, "'['"] if @square_brackets.negative?
+    findings << [number_of_lines, true, "'['"] if @square_brackets.negative?
     findings << [number_of_lines, true, "']'"] if @square_brackets.positive?
     findings
   end
