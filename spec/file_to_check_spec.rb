@@ -29,6 +29,5 @@ describe FileToCheck do
          "./test_files/test2.json \e[33mline# 1:\e[0m Expected a \e[33m'['\e[0m!"]
       )
     end
-  
   end
 end
