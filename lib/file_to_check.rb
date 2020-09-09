@@ -28,6 +28,8 @@ class FileToCheck
     @@results_array
   end
 
+  private
+
   def braces_closed?
     findings = []
     lines_array = read_lines(open_file(@path))
@@ -38,14 +40,14 @@ class FileToCheck
         elsif i == '}' && @curly_braces.positive?
           @curly_braces -= 1
         elsif i == '}' && @curly_braces.zero?
-          findings << [index, true, "'{'"]
+          findings << [index + 1, true, "'{'"]
           @curly_braces = 0
         elsif i == '[' && @square_brackets >= 0
           @square_brackets += 1
         elsif i == ']' && @square_brackets.positive?
           @square_brackets -= 1
         elsif i == ']' && @square_brackets.zero?
-          findings << [index, true, "'{'"]
+          findings << [index + 1, true, "'['"]
           @square_brackets = 0
         end
       end
@@ -53,7 +55,7 @@ class FileToCheck
     number_of_lines = count_lines(open_file(@path))
     findings << [number_of_lines, true, "'{'"] if @curly_braces.negative?
     findings << [number_of_lines, true, "'}'"] if @curly_braces.positive?
-    findings << [number_of_lines, true, "'['"] if @square_brackets.negative?
+    # findings << [number_of_lines, true, "'['"] if @square_brackets.negative?
     findings << [number_of_lines, true, "']'"] if @square_brackets.positive?
     findings
   end

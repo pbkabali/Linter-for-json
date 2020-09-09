@@ -1,4 +1,4 @@
-# rubocop:disable Style/ClassVars,Layout/LineLength
+# rubocop:disable Style/ClassVars
 
 require_relative './color'
 
@@ -14,13 +14,18 @@ class LineToCheck
   end
 
   def check_line
-    @@results_array << "#{@path} #{yellow("line# #{@line_number}:")} Trailing space detected!" if trailing_space?
-    space_around_colon?&.each do |pos|
+    if trailing_space?
+      @@results_array << "#{@path} #{yellow("line# #{@line_number}:")} \
+Trailing space detected!"
+    end
+    space_around_colon&.each do |pos|
       unless pos[1]
-        @@results_array << "#{@path} #{yellow("line# #{@line_number}:")} Unnecessary space before colon at #{yellow(pos[0])}!"
+        @@results_array << "#{@path} #{yellow("line# #{@line_number}:")} \
+Unnecessary space before colon at #{yellow(pos[0])}!"
       end
       unless pos[2]
-        @@results_array << "#{@path} #{yellow("line# #{@line_number}:")} Missing space after colon at #{yellow(pos[0])}!"
+        @@results_array << "#{@path} #{yellow("line# #{@line_number}:")} \
+Missing space after colon at #{yellow(pos[0])}!"
       end
     end
   end
@@ -29,11 +34,13 @@ class LineToCheck
     @@results_array
   end
 
+  private
+
   def trailing_space?
     @value[-1] == ' '
   end
 
-  def space_around_colon?
+  def space_around_colon
     occurrences = (0...@value.length).find_all { |i| @value[i, 1] == ':' }
     return if occurrences.empty?
 
@@ -54,4 +61,4 @@ class LineToCheck
     findings
   end
 end
-# rubocop:enable Style/ClassVars,Layout/LineLength
+# rubocop:enable Style/ClassVars
