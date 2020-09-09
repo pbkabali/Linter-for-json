@@ -3,7 +3,8 @@ require_relative '../lib/file_actions'
 describe FileActions do
   describe '#get_file_paths' do
     it('returns an array of all paths to .json files in all project directories') do
-      expect(FileActions.get_file_paths).to eql(['./test_files/test1.json', './test_files/test2.json', './test_files/test3.json'])
+      expect(FileActions.collect_file_paths).to eql(['./test_files/test1.json',
+                                                     './test_files/test2.json', './test_files/test3.json'])
     end
   end
 

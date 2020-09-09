@@ -50,14 +50,18 @@ describe LineToCheck do
 
     it('adds colon-space warning message in results array if the line has a bad colon spacing') do
       test_line1.check_line
-      expect(LineToCheck.results).to eql(["./test_files/test1.json \e[33mline# 2:\e[0m Trailing space detected!",
-                                          "./test_files/test1.json \e[33mline# 3:\e[0m Missing space after colon at \e[33m11\e[0m!"])
+      expect(LineToCheck.results).to eql(
+        ["./test_files/test1.json \e[33mline# 2:\e[0m Trailing space detected!",
+         "./test_files/test1.json \e[33mline# 3:\e[0m Missing space after colon at \e[33m11\e[0m!"]
+      )
     end
 
     it('doesn\'t add colon-space warning message in results array if the line has no bad colon spacing') do
       test_line2.check_line
-      expect(LineToCheck.results).to eql(["./test_files/test1.json \e[33mline# 2:\e[0m Trailing space detected!",
-                                          "./test_files/test1.json \e[33mline# 3:\e[0m Missing space after colon at \e[33m11\e[0m!"])
+      expect(LineToCheck.results).to eql(
+        ["./test_files/test1.json \e[33mline# 2:\e[0m Trailing space detected!",
+         "./test_files/test1.json \e[33mline# 3:\e[0m Missing space after colon at \e[33m11\e[0m!"]
+      )
     end
   end
 end

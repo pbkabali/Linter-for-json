@@ -1,7 +1,7 @@
 require 'find'
 
 module FileActions
-  def self.get_file_paths
+  def self.collect_file_paths
     files = []
     Find.find('./') do |path|
       files << path if File.extname(path) == '.json'
@@ -10,7 +10,7 @@ module FileActions
   end
 
   def open_file(path)
-    file = File.open(path, 'r')
+    File.open(path, 'r')
   end
 
   def read_lines(file)

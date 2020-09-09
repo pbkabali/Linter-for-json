@@ -3,7 +3,7 @@ require_relative '../lib/file_to_check'
 require_relative '../lib/line_to_check'
 require_relative '../lib/assign_color'
 
-paths = FileActions.get_file_paths
+paths = FileActions.collect_file_paths
 
 paths.each do |path|
   file = FileToCheck.new path

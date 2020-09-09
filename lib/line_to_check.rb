@@ -1,3 +1,5 @@
+# rubocop:disable Style/ClassVars,Layout/LineLength
+
 require_relative './assign_color'
 
 class LineToCheck
@@ -29,26 +31,27 @@ class LineToCheck
 
   def space_around_colon?
     occurrences = (0...@value.length).find_all { |i| @value[i, 1] == ':' }
-    unless occurrences.empty?
-      findings = []
-      occurrences.each do |index|
-        before = if index.zero?
-                   true
-                 else
-                   @value[index - 1] != ' '
-                 end
-        after = if index == @value.length - 1
-                  true
-                else
-                  @value[index + 1] == ' '
-                end
-        findings << [index, before, after]
-      end
-      findings
+    return if occurrences.empty?
+
+    findings = []
+    occurrences.each do |index|
+      before = if index.zero?
+                 true
+               else
+                 @value[index - 1] != ' '
+               end
+      after = if index == @value.length - 1
+                true
+              else
+                @value[index + 1] == ' '
+              end
+      findings << [index, before, after]
     end
+    findings
   end
 
   def self.results
     @@results_array
   end
 end
+# rubocop:enable Style/ClassVars,Layout/LineLength
