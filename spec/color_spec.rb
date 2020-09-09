@@ -1,4 +1,4 @@
-require_relative '../lib/assign_color'
+require_relative '../lib/color'
 
 describe Color do
   let(:color_code) { 31 }

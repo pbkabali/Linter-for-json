@@ -1,7 +1,7 @@
 require_relative '../lib/file_actions'
 require_relative '../lib/file_to_check'
 require_relative '../lib/line_to_check'
-require_relative '../lib/assign_color'
+require_relative '../lib/color'
 
 paths = FileActions.collect_file_paths
 
@@ -22,7 +22,7 @@ if linter_results.empty?
   puts Color.green('All looks good. No issues found')
 else
   no_of_issues = linter_results.length
-  puts linter_results
+  puts linter_results.sort
   puts Color.red("#{no_of_issues} issue#{no_of_issues > 1 ? 's' : ''} found!")
 end
 puts Color.cyan('********************* End JSON Linters Report *******************')

@@ -1,6 +1,6 @@
 # rubocop:disable Style/ClassVars,Layout/LineLength
 
-require_relative './assign_color'
+require_relative './color'
 
 class LineToCheck
   include Color
@@ -23,6 +23,10 @@ class LineToCheck
         @@results_array << "#{@path} #{yellow("line# #{@line_number}:")} Missing space after colon at #{yellow(pos[0])}!"
       end
     end
+  end
+
+  def self.results
+    @@results_array
   end
 
   def trailing_space?
@@ -48,10 +52,6 @@ class LineToCheck
       findings << [index, before, after]
     end
     findings
-  end
-
-  def self.results
-    @@results_array
   end
 end
 # rubocop:enable Style/ClassVars,Layout/LineLength

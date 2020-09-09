@@ -1,6 +1,6 @@
 # rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Metrics/MethodLength,Style/ClassVars
 require_relative './file_actions'
-require_relative './assign_color'
+require_relative './color'
 
 class FileToCheck
   include FileActions
@@ -22,6 +22,10 @@ class FileToCheck
     braces_closed?.each do |pos|
       @@results_array << "#{@path} #{yellow("line# #{pos[0]}:")} Expected a #{yellow(pos[2])}!" if pos[1]
     end
+  end
+
+  def self.results
+    @@results_array
   end
 
   def braces_closed?
@@ -46,15 +50,12 @@ class FileToCheck
         end
       end
     end
-    findings << [count_lines(open_file(@path)), true, "'{'"] if @curly_braces.negative?
-    findings << [count_lines(open_file(@path)), true, "'}'"] if @curly_braces.positive?
-    findings << [count_lines(open_file(@path)), true, "'['"] if @square_brackets.negative?
-    findings << [count_lines(open_file(@path)), true, "']'"] if @square_brackets.positive?
+    number_of_lines = count_lines(open_file(@path))
+    findings << [number_of_lines, true, "'{'"] if @curly_braces.negative?
+    findings << [number_of_lines, true, "'}'"] if @curly_braces.positive?
+    findings << [number_of_lines, true, "'['"] if @square_brackets.negative?
+    findings << [number_of_lines, true, "']'"] if @square_brackets.positive?
     findings
-  end
-
-  def self.results
-    @@results_array
   end
 end
 # rubocop:enable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Metrics/MethodLength,Style/ClassVars
