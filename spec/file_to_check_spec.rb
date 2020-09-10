@@ -3,6 +3,7 @@ require_relative '../lib/file_to_check'
 describe FileToCheck do
   let(:test_file) { FileToCheck.new './test_files/test1.json' }
   let(:test_file2) { FileToCheck.new './test_files/test2.json' }
+  let(:test_file3) { FileToCheck.new './test_files/test4.json' }
 
   describe '#initialize' do
     it('puts the file path into the path property on instantiation') do
@@ -22,12 +23,22 @@ describe FileToCheck do
       expect(FileToCheck.results).to eql(["./test_files/test1.json \e[33mline# 5:\e[0m Expected a \e[33m'{'\e[0m!"])
     end
 
+    it('does not add missing brace message in results array if no extra closing brace is detected') do
+      test_file3.check_file
+      expect(FileToCheck.results.length).to_not be > 1
+    end
+
     it('adds missing bracket message in results array if extra closing bracket is detected') do
       test_file2.check_file
       expect(FileToCheck.results).to eql(
         ["./test_files/test1.json \e[33mline# 5:\e[0m Expected a \e[33m'{'\e[0m!",
          "./test_files/test2.json \e[33mline# 1:\e[0m Expected a \e[33m'['\e[0m!"]
       )
+    end
+
+    it('does not add missing bracket message in results array if no extra closing bracket is detected') do
+      test_file3.check_file
+      expect(FileToCheck.results.length).to_not be > 2
     end
   end
 end

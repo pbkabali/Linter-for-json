@@ -11,6 +11,10 @@ describe LineToCheck do
   let(:test_line2) { LineToCheck.new(test_file2.path, 1, file_array2[0]) }
 
   describe '#initialize' do
+    it('stores correct object in the properties') do
+      expect(test_line.value).to_not be_nil
+    end
+
     it('puts the line value in the value property on instantiation') do
       expect(test_line.value).to eql('  "name": "Polos", ')
     end
@@ -25,6 +29,7 @@ describe LineToCheck do
     it('doesn\'t add trailing-space warning message in results array if the line has no trailing space') do
       test_line2.check_line
       expect(LineToCheck.results).to eql(["./test_files/test1.json \e[33mline# 2:\e[0m Trailing space detected!"])
+      expect(LineToCheck.results.length).to_not be > 1
     end
 
     it('adds colon-space warning message in results array if the line has a bad colon spacing') do
@@ -41,6 +46,7 @@ describe LineToCheck do
         ["./test_files/test1.json \e[33mline# 2:\e[0m Trailing space detected!",
          "./test_files/test1.json \e[33mline# 3:\e[0m Missing space after colon at \e[33m11\e[0m!"]
       )
+      expect(LineToCheck.results.length).to_not be > 2
     end
   end
 end
