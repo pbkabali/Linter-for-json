@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# Linter for JSON
 
 > This is a capstone project done at the end of the Ruby section of the Microverse technical curriculum.
 
@@ -11,6 +11,10 @@ This project is a linter for JSON files. It is able to search for all `.json` fi
 - Check for surrounding space for colon
 - Check that all opening curly braces have closing counterparts
 - Check that all opening square brackets have closing counterparts
+
+## Demo
+
+Watch demo video [here](https://www.loom.com/share/893c94f7f33444adb8903fe800efc9e1)
 
 ## Built With
 
@@ -78,4 +82,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](https://opensource.org/licenses/MIT) licensed.
+This project is [MIT](https://opensource.org/licenses/MIT) licensed
