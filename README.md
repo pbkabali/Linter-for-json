@@ -4,11 +4,11 @@
 
 > This is a capstone project done at the end of the Ruby section of the Microverse technical curriculum.
 
-![screenshot](./app_screenshot.png)
+![screenshot](./images/app_screenshot.png)
 
 This project is a linter for JSON files. It is able to search for all `.json` files in the project folder and run the following linters on them:
 - Check for line trailing space
-- Check for sorrounding space for colon
+- Check for surrounding space for colon
 - Check that all opening curly braces have closing counterparts
 - Check that all opening square brackets have closing counterparts
 
@@ -38,17 +38,17 @@ If you need to run tests, you need the Rspec gem. A step-by-step guide on instal
 
 ### Usage
 
-- put JSON files for linting anywhere in the project dorectory. I recommend inside the `test_files` directory or a new directory in the root folder
+- put JSON files for linting anywhere in the project directory. I recommend inside the `test_files` directory or a new directory in the root folder
 
 - Run `ruby ./bin/main.rb` from within the root directory
 - The program will scan for all `.json` files in the root plus all sub-directories and display a result log in the console.
-- If errors are found in any of the files, the result log will include th file name and relative path and the error details as in the example below:
+- If errors are found in any of the files, the result log will include the file name and relative path and the error details as in the example below:
 
-![screenshot](./app_screenshot.png)
+![screenshot](./images/app_screenshot.png)
 
 - If no errors are found, the result will be displayed as below
 
-![screenshot](./app_screenshot1.png)
+![screenshot](./images/app_screenshot1.png)
 
 ### Run tests
 
